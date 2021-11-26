@@ -16,10 +16,10 @@ const ThingList = ({ things }) => {
   if (active >= things.length) return <EmptyList />
 
   return (
-    <div className="flex flex-col">
+    <>
       <Thing thing={things[active]} />
       <Controls onNext={() => setActive(active + 1)} />
-    </div>
+    </>
   )
 }
 

@@ -10,12 +10,14 @@ export default function App() {
           <Link to="/add">add</Link>
           <Link to="/edit">edit</Link>
         </nav>
-        <Routes>
-          <Route exact path="/" element={<WorkoutScreen />} />
-          <Route path="/add" element={<AddScreen />} />
-          <Route path="/edit" element={<EditListScreen />} />
-          <Route path="/edit/:id" element={<EditScreen />} />
-        </Routes>
+        <div className="flex flex-1 flex-col">
+          <Routes>
+            <Route exact path="/" element={<WorkoutScreen />} />
+            <Route path="/add" element={<AddScreen />} />
+            <Route path="/edit" element={<EditListScreen />} />
+            <Route path="/edit/:id" element={<EditScreen />} />
+          </Routes>
+        </div>
       </div>
     </Router>
   )

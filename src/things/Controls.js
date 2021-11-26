@@ -1,18 +1,30 @@
+const ButtonHolder = ({ children }) => {
+  return (
+    <div className="flex flex-1 justify-center items-center px-3">
+      {children}
+    </div>
+  )
+}
+
 const Controls = ({ onNext }) => {
   return (
-    <div className="flex align-middle justify-evenly">
-      <button
-        onClick={onNext}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 w-1/3 rounded focus:outline-none focus:shadow-outline"
-      >
-        NICE
-      </button>
-      <button
-        onClick={onNext}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 w-1/3 rounded focus:outline-none focus:shadow-outline"
-      >
-        BULLSHIT
-      </button>
+    <div className="flex h-52 justify-center items-center">
+      <ButtonHolder>
+        <button
+          onClick={onNext}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 w-full rounded focus:outline-none focus:shadow-outline"
+        >
+          NICE
+        </button>
+      </ButtonHolder>
+      <ButtonHolder>
+        <button
+          onClick={onNext}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 w-full rounded focus:outline-none focus:shadow-outline"
+        >
+          BULLSHIT
+        </button>
+      </ButtonHolder>
     </div>
   )
 }

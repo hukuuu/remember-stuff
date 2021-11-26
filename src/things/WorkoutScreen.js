@@ -4,11 +4,7 @@ import useStore from '../store'
 const WorkoutScreen = () => {
   const things = useStore(state => state.things)
 
-  return (
-    <div className="flex">
-      <ThingList things={things} />
-    </div>
-  )
+  return <ThingList things={things} />
 }
 
 export default WorkoutScreen
