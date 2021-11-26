@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { AddScreen, WorkoutScreen, EditListScreen, EditScreen } from './things'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className="max-w-md mx-auto flex flex-col flex-grow w-full">
+        <nav className="flex justify-evenly">
+          <Link to="/">home</Link>
+          <Link to="/add">add</Link>
+          <Link to="/edit">edit</Link>
+        </nav>
+        <Routes>
+          <Route exact path="/" element={<WorkoutScreen />} />
+          <Route path="/add" element={<AddScreen />} />
+          <Route path="/edit" element={<EditListScreen />} />
+          <Route path="/edit/:id" element={<EditScreen />} />
+        </Routes>
+      </div>
+    </Router>
+  )
 }
-
-export default App;
