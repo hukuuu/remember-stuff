@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import useStore from '../store'
 import EditForm from './EditForm'
+import { defaultModel } from 'ebisu-js'
 
 const emptyThing = { title: '', body: '' }
 
@@ -12,7 +13,12 @@ const AddScreen = () => {
 
   const onSave = ({ title, body }) => {
     console.log('onsave', title, body)
-    add({ title, body })
+    add({
+      title,
+      body,
+      memoryModel: defaultModel(5),
+      lastReview: Date.now(),
+    })
     setThing({ ...emptyThing })
   }
 

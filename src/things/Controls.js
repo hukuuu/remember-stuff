@@ -6,12 +6,12 @@ const ButtonHolder = ({ children }) => {
   )
 }
 
-const Controls = ({ onNext }) => {
+const Controls = ({ onGood, onBad }) => {
   return (
     <div className="flex h-52 justify-center items-center">
       <ButtonHolder>
         <button
-          onClick={onNext}
+          onClick={onGood}
           className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 w-full rounded focus:outline-none focus:shadow-outline"
         >
           NICE
@@ -19,7 +19,7 @@ const Controls = ({ onNext }) => {
       </ButtonHolder>
       <ButtonHolder>
         <button
-          onClick={onNext}
+          onClick={onBad}
           className="bg-blue-500 hover:bg-blue-700 text-white font-medium py-2 w-full rounded focus:outline-none focus:shadow-outline"
         >
           BULLSHIT

@@ -1,6 +1,9 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import Controls from './Controls'
 import Thing from './Thing'
+import { predictRecall, updateRecall } from 'ebisu-js'
+import useStore from '../store'
+import { tUntilNow } from '../utils'
 
 const EmptyList = () => {
   return (
@@ -11,14 +14,58 @@ const EmptyList = () => {
 }
 
 const ThingList = ({ things }) => {
-  const [active, setActive] = useState(0)
+  const [index, setIndex] = useState(0)
+  const update = useStore(state => state.update)
+  const [lastWorkout, setLastWorkout] = useStore(state => [
+    state.lastWorkout,
+    state.setLastWorkout,
+  ])
 
-  if (active >= things.length) return <EmptyList />
+  const makeThingUpdater = (thing, success) => () => {
+    console.log('before update: ', thing)
+    const updated = {
+      ...thing,
+      memoryModel: updateRecall(
+        thing.memoryModel,
+        success,
+        1,
+        tUntilNow(thing.lastReview)
+      ),
+      lastReview: Date.now(),
+    }
+    console.log('new value: ', updated)
+    update(updated)
+    if (index + 1 >= interestingThings.length) setLastWorkout(Date.now())
+    setIndex(index + 1)
+  }
+
+  const interestingThings = useMemo(
+    () =>
+      things
+        .map(thing => ({
+          ...thing,
+          recallProbability: predictRecall(
+            thing.memoryModel,
+            tUntilNow(thing.lastReview),
+            true
+          ),
+        }))
+        .sort((a, b) => a.recallProbability - b.recallProbability)
+        .filter(thing => thing.recallProbability < 0.8),
+    [lastWorkout]
+  )
+
+  if (index >= interestingThings.length) return <EmptyList />
+
+  const thing = interestingThings[index]
 
   return (
     <>
-      <Thing thing={things[active]} />
-      <Controls onNext={() => setActive(active + 1)} />
+      <Thing thing={thing} />
+      <Controls
+        onGood={makeThingUpdater(thing, false)}
+        onBad={makeThingUpdater(thing, true)}
+      />
     </>
   )
 }

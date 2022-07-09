@@ -1,6 +1,5 @@
 import { useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useHistory } from 'react-router-dom'
 
 import useStore from '../store'
 import EditForm from './EditForm'

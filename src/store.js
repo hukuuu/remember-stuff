@@ -15,21 +15,23 @@ const useStore = create(
           })
         )
       },
-      update: thing => {
-        console.log('update', thing)
-        set(
-          produce(draft => {
-            const t = draft.things.find(t => thing.id === t.id)
-            t.title = thing.title
-            t.body = thing.body
-          })
-        )
+      update: t => {
+        console.log('update', t)
+        set(state => ({
+          things: state.things.map(thing => (thing.id === t.id ? t : thing)),
+        }))
       },
       del: id => {
         console.log('delete', id)
         // set(state => state.things.filter(thing => thing.id !== id))
         set(state => ({
           things: state.things.filter(thing => thing.id !== id),
+        }))
+      },
+      lastWorkout: 0,
+      setLastWorkout: () => {
+        set(() => ({
+          lastWorkout: Date.now(),
         }))
       },
     }),
