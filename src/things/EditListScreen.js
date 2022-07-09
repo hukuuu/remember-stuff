@@ -1,19 +1,16 @@
 import useStore from '../store'
 import { Link } from 'react-router-dom'
 
-const Thing = ({ thing }) => {
-  return thing.title
-}
-
 const EditListScreen = () => {
   const things = useStore(state => state.things)
 
   return (
-    <ul>
+    <ul className="mt-12 px-12">
       {things.map((thing, i) => (
-        <li key={i}>
+        <li key={i} className="py-1 hover:bg-pink-600">
           <Link to={`/edit/${thing.id}`}>
-            <Thing thing={thing} />
+            {i + 1 + '. '}
+            {thing.title}
           </Link>
         </li>
       ))}

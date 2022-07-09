@@ -28,16 +28,14 @@ const EditForm = ({
 
   return (
     <div className="w-full">
-      <form className="bg-white  px-8 pt-6 pb-8 mb-4">
+      <form className="px-8 pt-6 pb-8 mb-4">
         <div className="mb-4">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="title"
-          >
+          <label className="block  text-sm mb-2" htmlFor="title">
             Title
           </label>
-          <input
+          <textarea
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            rows={3}
             id="title"
             type="text"
             placeholder=""
@@ -46,14 +44,11 @@ const EditForm = ({
           />
         </div>
         <div className="mb-6">
-          <label
-            className="block text-gray-700 text-sm font-bold mb-2"
-            htmlFor="details"
-          >
+          <label className="block text-sm mb-2" htmlFor="details">
             Details
           </label>
           <textarea
-            rows={7}
+            rows={15}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
             id="details"
             type="details"
@@ -64,28 +59,28 @@ const EditForm = ({
         </div>
         <div className="flex items-center justify-between">
           <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            className="hover:bg-pink-600"
             type="button"
             onClick={() => onSave({ ...thing, title, body })}
           >
-            Save
+            [Save]
           </button>
           {showDelete && (
             <button
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              className="hover:bg-pink-600"
               type="button"
               onClick={confirmDelete}
             >
-              Delete
+              [Delete]
             </button>
           )}
-          <a
-            className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-            href="#"
+          <button
+            className="hover:bg-pink-600"
+            type="button"
             onClick={onCancel}
           >
-            Cancel
-          </a>
+            [Cancel]
+          </button>
         </div>
       </form>
     </div>
