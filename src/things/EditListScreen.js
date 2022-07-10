@@ -7,7 +7,7 @@ const EditListScreen = () => {
   return (
     <ul className="mt-12 px-12">
       {things.map((thing, i) => (
-        <li key={i} className="py-1 hover:bg-pink-600">
+        <li key={i} className="py-1 ">
           <Link to={`/edit/${thing.id}`}>
             {i + 1 + '. '}
             {thing.title}

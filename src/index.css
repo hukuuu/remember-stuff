@@ -9,3 +9,7 @@ body,
   flex-direction: column;
   height: 100%;
 }
+
+.scrollbar::-webkit-scrollbar {
+  width:0;
+}
