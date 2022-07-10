@@ -20,8 +20,7 @@ const EditForm = ({
   }, [thing])
 
   const confirmDelete = () => {
-    // if (confirm('Confirm Deletion?')) onDelete(thing.id)
-    onDelete(thing.id)
+    if (window.confirm('Confirm Deletion?')) onDelete(thing.id)
   }
 
   const { showDelete } = config
