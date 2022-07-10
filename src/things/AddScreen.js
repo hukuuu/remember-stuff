@@ -16,7 +16,7 @@ const AddScreen = () => {
     add({
       title,
       body,
-      memoryModel: defaultModel(5),
+      memoryModel: defaultModel(15),
       lastReview: Date.now(),
     })
     setThing({ ...emptyThing })
