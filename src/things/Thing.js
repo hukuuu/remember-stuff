@@ -1,7 +1,7 @@
 const Thing = ({ thing }) => {
   return (
     <div className="scrollbar flex flex-1 flex-col p-8 overflow-y-scroll">
-      <p className="text-3xl font-semibold text-center text-yellow-400">
+      <p className="text-3xl font-semibold text-center text-highlight">
         {thing.title}
       </p>
       <br />

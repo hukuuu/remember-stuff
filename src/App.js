@@ -10,7 +10,7 @@ const MyLink = ({ to, text }) => (
 export default function App() {
   return (
     <Router>
-      <div className="max-w-md mx-auto flex flex-col flex-grow w-full bg-gray-700 text-gray-100 font-mono overflow-y-hidden py-3">
+      <div className="text-primary bg-primary max-w-md mx-auto flex flex-col flex-grow w-full  font-mono overflow-y-hidden py-3 ">
         <nav className="flex h-10 justify-evenly items-center border-b-2">
           <MyLink to="/" text="Home" />
           <MyLink to="/add" text="Add" />

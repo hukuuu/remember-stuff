@@ -13,3 +13,18 @@ body,
 .scrollbar::-webkit-scrollbar {
   width:0;
 }
+
+@layer base {
+  .bg-primary {
+    @apply bg-white dark:bg-gray-700
+  }
+
+  .text-primary {
+    @apply text-gray-800 dark:text-gray-100
+  }
+
+  .text-highlight {
+    @apply text-blue-400 dark:text-yellow-400
+  }
+}
+
