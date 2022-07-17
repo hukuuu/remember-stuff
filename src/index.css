@@ -24,7 +24,7 @@ body,
   }
 
   .text-highlight {
-    @apply text-blue-400 dark:text-yellow-400
+    @apply text-blue-500 dark:text-yellow-400
   }
 }
 
