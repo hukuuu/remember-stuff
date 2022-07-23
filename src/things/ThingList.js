@@ -37,22 +37,33 @@ const ThingList = ({ things }) => {
     state.setLastWorkout,
   ])
 
-  const makeThingUpdater = (thing, success) => () => {
-    console.log('before update: ', thing)
-    const updated = {
-      ...thing,
-      memoryModel: updateRecall(
-        thing.memoryModel,
-        success,
-        1,
-        tUntilNow(thing.lastReview)
-      ),
-      lastReview: Date.now(),
+  const makeThingUpdater = (thing, success) => {
+    const start = Date.now()
+    return () => {
+      console.log('before update: ', thing)
+      const readTimes = thing.readTimes || []
+
+      readTimes.push(Date.now() - start)
+      if (readTimes.length > 3) readTimes.shift()
+      const avgReadTime = readTimes.reduce((a, b) => a + b) / readTimes.length
+
+      const updated = {
+        ...thing,
+        memoryModel: updateRecall(
+          thing.memoryModel,
+          success,
+          1,
+          tUntilNow(thing.lastReview)
+        ),
+        lastReview: Date.now(),
+        readTimes,
+        avgReadTime,
+      }
+      console.log('new value: ', updated)
+      update(updated)
+      if (index + 1 >= interestingThings.length) setLastWorkout(Date.now())
+      setIndex(index + 1)
     }
-    console.log('new value: ', updated)
-    update(updated)
-    if (index + 1 >= interestingThings.length) setLastWorkout(Date.now())
-    setIndex(index + 1)
   }
 
   const interestingThings = useMemo(
@@ -66,8 +77,8 @@ const ThingList = ({ things }) => {
             true
           ),
         }))
-        .sort((a, b) => a.recallProbability - b.recallProbability)
-        .filter(thing => thing.recallProbability < 0.8),
+        .sort((a, b) => a.recallProbability - b.recallProbability),
+    // .filter(thing => thing.recallProbability < 0.8),
     [lastWorkout]
   )
 
