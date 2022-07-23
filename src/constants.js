@@ -1,0 +1,1 @@
+export const DEFAULT_WORKOUT_DURATION = 3

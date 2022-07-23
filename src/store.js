@@ -2,10 +2,19 @@ import create from 'zustand'
 import { persist } from 'zustand/middleware'
 import produce from 'immer'
 import { v4 } from 'uuid'
+import { DEFAULT_WORKOUT_DURATION } from './constants'
 
 const useStore = create(
   persist(
     set => ({
+      settings: {
+        preferredWorkoutDuraiton: DEFAULT_WORKOUT_DURATION,
+      },
+      setSettings: settings => {
+        set(() => ({
+          settings,
+        }))
+      },
       things: [],
       add: thing => {
         console.log('add', thing)

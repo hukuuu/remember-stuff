@@ -1,5 +1,6 @@
 import { HashRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import { AddScreen, WorkoutScreen, EditListScreen, EditScreen } from './things'
+import SettingsScreen from './SettingsScreen'
 
 const MyLink = ({ to, text }) => (
   <Link className="" to={to}>
@@ -15,6 +16,9 @@ export default function App() {
           <MyLink to="/" text="Home" />
           <MyLink to="/add" text="Add" />
           <MyLink to="/edit" text="Edit" />
+          <Link className="text-2xl" to="/settings">
+            ⚙️
+          </Link>
         </nav>
         <div className="flex flex-1 flex-col overflow-y-hidden">
           <Routes>
@@ -22,6 +26,7 @@ export default function App() {
             <Route path="/add" element={<AddScreen />} />
             <Route path="/edit" element={<EditListScreen />} />
             <Route path="/edit/:id" element={<EditScreen />} />
+            <Route path="/settings" element={<SettingsScreen />} />
           </Routes>
         </div>
       </div>
