@@ -77,8 +77,8 @@ const ThingList = ({ things }) => {
             true
           ),
         }))
-        .sort((a, b) => a.recallProbability - b.recallProbability),
-    // .filter(thing => thing.recallProbability < 0.8),
+        .sort((a, b) => a.recallProbability - b.recallProbability)
+        .filter(thing => thing.recallProbability < 0.8),
     [lastWorkout]
   )
 
