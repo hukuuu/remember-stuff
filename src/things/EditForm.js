@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { PaddedContainer } from '../shared'
+import { Footer, PaddedContainer } from '../shared'
 
 const defaultConfig = {
   showDelete: true,
@@ -62,7 +62,7 @@ const EditForm = ({
           </form>
         </div>
       </PaddedContainer>
-      <div className="flex h-10 items-center justify-between border-t-2 px-8">
+      <Footer>
         <button
           className=""
           type="button"
@@ -78,7 +78,7 @@ const EditForm = ({
         <button className="" type="button" onClick={onCancel}>
           [Cancel]
         </button>
-      </div>
+      </Footer>
     </div>
   )
 }
