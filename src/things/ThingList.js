@@ -5,27 +5,32 @@ import { predictRecall, updateRecall } from 'ebisu-js'
 import useStore from '../store'
 import { tUntilNow } from '../utils'
 import { Link } from 'react-router-dom'
+import { PaddedContainer } from '../shared'
 
 const EmptyList = () => {
   return (
-    <div className="flex flex-1 flex-col justify-center items-center text-xl p-8">
-      <div>
-        You don't have any Quotes yet. Why don't you{' '}
-        <Link className="underline" to={'/add'}>
-          add
-        </Link>{' '}
-        some?
+    <PaddedContainer>
+      <div className="flex flex-1 flex-col justify-center items-center text-xl">
+        <div>
+          You don't have any Quotes yet. Why don't you{' '}
+          <Link className="underline" to={'/add'}>
+            add
+          </Link>{' '}
+          some?
+        </div>
       </div>
-    </div>
+    </PaddedContainer>
   )
 }
 
 const AllDone = () => {
   return (
-    <div className="flex flex-1 flex-col justify-center items-center text-xl p-8">
-      <p className="text-5xl mb-8">¯\_(ツ)_/¯</p>
-      All good for now. <br /> Come back later!
-    </div>
+    <PaddedContainer>
+      <div className="flex flex-1 flex-col justify-center items-center text-xl">
+        <p className="text-5xl mb-8">¯\_(ツ)_/¯</p>
+        All good for now. <br /> Come back later!
+      </div>
+    </PaddedContainer>
   )
 }
 
@@ -77,8 +82,8 @@ const ThingList = ({ things }) => {
             true
           ),
         }))
-        .sort((a, b) => a.recallProbability - b.recallProbability)
-        .filter(thing => thing.recallProbability < 0.8),
+        .sort((a, b) => a.recallProbability - b.recallProbability),
+    // .filter(thing => thing.recallProbability < 0.8),
     [lastWorkout]
   )
 
@@ -89,7 +94,9 @@ const ThingList = ({ things }) => {
 
   return (
     <>
-      <Thing thing={thing} />
+      <PaddedContainer>
+        <Thing thing={thing} />
+      </PaddedContainer>
       <Controls
         onGood={makeThingUpdater(thing, false)}
         onBad={makeThingUpdater(thing, true)}
